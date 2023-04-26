@@ -8,7 +8,7 @@ function Search({search, setSearch}){
         <>
             <form className="todolist-input fcc">
                 <input
-                    type="text"
+                    type="search"
                     onInput={handleSearch}
                     placeholder="Que voulez vous rechercher ?"
                 />

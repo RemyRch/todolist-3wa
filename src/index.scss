@@ -38,6 +38,7 @@ main {
           border-radius: 5px;
           padding:  5px 10px;
           font-size: 1rem;
+          outline: none;
         }
         button {
           background-color: rgb(245, 220, 0);
@@ -56,9 +57,14 @@ main {
       h2{
         padding: 0 10px;
       }
-      input[type=text]{
+      input[type=search]{
         width: 95%;
         padding: 10px 5px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
       }
     }
 
