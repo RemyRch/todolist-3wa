@@ -3,7 +3,7 @@
 ## Installation :
 
 - Run ```npm install``` to install all dependencies
-- Run ```npm start``` to start the server
+- Run ```npm run start``` to start the server
 
 ## Features :
 - List all tasks
