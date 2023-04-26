@@ -23,7 +23,7 @@ function Form({ items, setItems }) {
           type="text"
           value={item}
           onChange={handleChange}
-          placeholder="Que voulez vous faire ?"
+          placeholder="Que voulez vous ajouter ?"
         />
         <button
           type="submit"
