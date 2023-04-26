@@ -9,23 +9,36 @@ function Item({items, setItems, name, completed, id}) {
     setEdit(!edit);
   }
 
+  const handleChange = (event) => {
+    setEdit(!edit);
+
+    const text = document.getElementById(`content-${id}`).innerText;
+
+    setItem({...item, name: text})
+    setItems(items.map((element) => element.id === id ? {...element, name: text} : element));
+  }
+
   const handleDelete = () => {
-    setItems(items.filter((e) => e.id !== id))
+    setItems(items.filter((item) => item.id !== id))
   }
     
   const handleChecked = (event) => {
-    setItem({...item, completed: event.target.checked})
+
+    const checked = event.target.checked
+
+    setItems(items.map((element) => element.id === id ? {...element, completed: checked} : element));
+
   }
 
   return (
     <>
       <div className="item-container">
         <div className="item-selection">
-          <input id={id} type="checkbox" disabled={edit} checked={item.completed} onChange={handleChecked}/>
-          <label htmlFor={id} contentEditable={edit} suppressContentEditableWarning={true} >{item.name}</label>
+          <input id={id} type="checkbox" disabled={edit} checked={item.completed} onChange={handleChecked} />
+          <label htmlFor={id} id={`content-${id}`} contentEditable={edit} suppressContentEditableWarning={true} >{item.name}</label>
         </div>
         <div className="item-actions">
-          <span className="material-symbols-sharp" onClick={handleEdit}>edit</span>
+          {edit ? <span className="material-symbols-sharp" onClick={handleChange}>done</span> : <span className="material-symbols-sharp" onClick={handleEdit}>edit</span>}
           <span className="material-symbols-sharp" onClick={handleDelete}>delete</span>
         </div>
       </div>

@@ -7,14 +7,15 @@ import uniqid from 'uniqid';
 import { React, useState } from "react";
 
 function TodoList() {
+    
   const [items, setItems] = useState([
     { name: "Faire la cuisine", completed: false, id: uniqid() },
-    { name: "Réparer la voiture", completed: true, id: uniqid() },
     { name: "Manger le lapin", completed: false, id: uniqid() },
-    { name: "Réparer le lave vaisselle", completed: true, id: uniqid() },
-    { name: "Nourrir le lapin", completed: true, id: uniqid() },
     { name: "Conduire la 2008", completed: false, id: uniqid() },
-    { name: "Faire de la moto", completed: false, id: uniqid() }
+    { name: "Faire de la moto", completed: false, id: uniqid() },
+    { name: "Réparer la voiture", completed: true, id: uniqid() },
+    { name: "Réparer le lave vaisselle", completed: true, id: uniqid() },
+    { name: "Nourrir le lapin", completed: true, id: uniqid() }
   ]);
 
   const [search, setSearch] = useState("");
@@ -33,7 +34,11 @@ function TodoList() {
           </div>
           <div className="todolist-items">
             <h2 className="todolist-items-title">A faire :</h2>
-            <List items={items} setItems={setItems} searched={search} />
+            <List items={items} showed={items.filter(item => item.completed === false)} setItems={setItems} searched={search} />
+          </div>
+          <div className="todolist-items">
+            <h2 className="todolist-items-title">Fait :</h2>
+            <List items={items} showed={items.filter(item => item.completed === true)} setItems={setItems} searched={search} />
           </div>
         </section>
       </main>
