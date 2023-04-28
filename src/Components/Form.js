@@ -1,27 +1,27 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 
 import uniqid from 'uniqid';
+import { TaskContext } from "../Context/TaskContext";
 
-function Form({ items, setItems }) {
+function Form() {
 
-  const [item, setItem] = useState("");
+  const { tasks, setTasks } = useContext(TaskContext);
+  const [task, setTask] = useState("");
 
   const handleNewItem = (event) => {
     event.preventDefault();
-    setItems([...items, {name: item, completed: false, id: uniqid()}])
-    setItem("");
+    setTasks([...tasks, {name: task, completed: false, id: uniqid()}])
+    setTask("");
   };
 
-  const handleChange = (event) => {
-    setItem(event.target.value);
-  }
+  const handleChange = (event) => setTask(event.target.value);
 
   return (
     <>
       <form className="todolist-input fcc">
         <input
           type="text"
-          value={item}
+          value={task}
           onChange={handleChange}
           placeholder="Que voulez vous ajouter ?"
         />

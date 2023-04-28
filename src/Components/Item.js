@@ -1,7 +1,9 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
+import { TaskContext } from "../Context/TaskContext";
 
-function Item({items, setItems, name, completed, id}) {
+function Item({name, completed, id}) {
 
+  const { tasks, setTasks } = useContext(TaskContext);
   const [item, setItem] = useState({name, completed, id});
   const [edit, setEdit] = useState(false);
 
@@ -15,19 +17,14 @@ function Item({items, setItems, name, completed, id}) {
     const text = document.getElementById(`content-${id}`).innerText;
 
     setItem({...item, name: text})
-    setItems(items.map((element) => element.id === id ? {...element, name: text} : element));
+    setTasks(tasks.map((element) => element.id === id ? {...element, name: text} : element));
   }
 
-  const handleDelete = () => {
-    setItems(items.filter((item) => item.id !== id))
-  }
+  const handleDelete = () => setTasks(tasks.filter((item) => item.id !== id))
     
   const handleChecked = (event) => {
-
     const checked = event.target.checked
-
-    setItems(items.map((element) => element.id === id ? {...element, completed: checked} : element));
-
+    setTasks(tasks.map((element) => element.id === id ? {...element, completed: checked} : element));
   }
 
   return (

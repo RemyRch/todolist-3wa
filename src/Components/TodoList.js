@@ -2,23 +2,12 @@ import Form from "./Form";
 import List from "./List";
 import Search from "./Search";
 
-import uniqid from 'uniqid';
-
-import { React, useState } from "react";
+import { React, useContext } from "react";
+import { TaskContext } from "../Context/TaskContext";
 
 function TodoList() {
     
-  const [items, setItems] = useState([
-    { name: "Faire la cuisine", completed: false, id: uniqid() },
-    { name: "Manger le lapin", completed: false, id: uniqid() },
-    { name: "Conduire la 2008", completed: false, id: uniqid() },
-    { name: "Faire de la moto", completed: false, id: uniqid() },
-    { name: "Réparer la voiture", completed: true, id: uniqid() },
-    { name: "Réparer le lave vaisselle", completed: true, id: uniqid() },
-    { name: "Nourrir le lapin", completed: true, id: uniqid() }
-  ]);
-
-  const [search, setSearch] = useState("");
+  const { tasks } = useContext(TaskContext);
 
   return (
     <>
@@ -26,19 +15,19 @@ function TodoList() {
         <section className="todolist">
           <div className="todolist-header">
             <h1 className="todolist-title">Todo List</h1>
-            <Form items={items} setItems={setItems} />
+            <Form />
           </div>
           <div className="todolist-search">
             <h2 className="todolist-items-title">Rechercher :</h2>
-            <Search search={search} setSearch={setSearch} />
+            <Search />
           </div>
           <div className="todolist-items">
             <h2 className="todolist-items-title">A faire :</h2>
-            <List items={items} showed={items.filter(item => item.completed === false)} setItems={setItems} searched={search} />
+            <List showed={tasks.filter(task => task.completed === false)} />
           </div>
           <div className="todolist-items">
             <h2 className="todolist-items-title">Fait :</h2>
-            <List items={items} showed={items.filter(item => item.completed === true)} setItems={setItems} searched={search} />
+            <List showed={tasks.filter(task => task.completed === true)} />
           </div>
         </section>
       </main>

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchContext } from "../Context/SearchContext";
 
-function Search({search, setSearch}){
+function Search(){
+    
+    const { search, setSearch } = useContext(SearchContext);
 
     const handleSearch = (event) => setSearch(event.target.value.toLowerCase())
 
